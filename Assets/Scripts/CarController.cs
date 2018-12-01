@@ -59,26 +59,26 @@ public class CarController : MonoBehaviour
         Quaternion flq;//rotation of wheel collider
         Vector3 flv;//position of wheel collider
         WheelFL.GetWorldPose(out flv, out flq);//get wheel collider position and rotation
-        FL.transform.position = flv;
-        FL.transform.rotation = flq;
+        //FL.transform.position = flv;
+        //FL.transform.rotation = flq;
 
         Quaternion Blq;//rotation of wheel collider
         Vector3 Blv;//position of wheel collider
         WheelBL.GetWorldPose(out Blv, out Blq);//get wheel collider position and rotation
-        BL.transform.position = Blv;
-        BL.transform.rotation = Blq;
+        //BL.transform.position = Blv;
+        //BL.transform.rotation = Blq;
 
         Quaternion fRq;//rotation of wheel collider
         Vector3 fRv;//position of wheel collider
         WheelFR.GetWorldPose(out fRv, out fRq);//get wheel collider position and rotation
-        FR.transform.position = fRv;
-        FR.transform.rotation = fRq;
+        //FR.transform.position = fRv;
+        //FR.transform.rotation = fRq;
 
         Quaternion BRq;//rotation of wheel collider
         Vector3 BRv;//position of wheel collider
         WheelBR.GetWorldPose(out BRv, out BRq);//get wheel collider position and rotation
-        BR.transform.position = BRv;
-        BR.transform.rotation = BRq;
+        //BR.transform.position = BRv;
+        //BR.transform.rotation = BRq;
 
     }
 }
