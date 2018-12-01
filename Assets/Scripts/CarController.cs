@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -77,8 +78,12 @@ public class CarController : MonoBehaviour
         Quaternion BRq;//rotation of wheel collider
         Vector3 BRv;//position of wheel collider
         WheelBR.GetWorldPose(out BRv, out BRq);//get wheel collider position and rotation
-        //BR.transform.position = BRv;
-        //BR.transform.rotation = BRq;
+                                               //BR.transform.position = BRv;
+                                               //BR.transform.rotation = BRq;
+
+        if (Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
     }
 }
