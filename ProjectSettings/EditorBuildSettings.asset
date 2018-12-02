@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: acb4420521b439c4ebf88e8fa94faf99
   - enabled: 1
-    path: Assets/Scenes/Learn_Unity_0.unity
+    path: Assets/Scenes/LevelOne.unity
     guid: 083c47fad40602a45a5851dbbd7ad4fb
   m_configObjects: {}

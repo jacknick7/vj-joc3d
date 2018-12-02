@@ -10,4 +10,8 @@ public class MenuMain : MonoBehaviour {
 	public void StartLevelOne() {
         SceneManager.LoadScene(LevelOne);
     }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
 }
