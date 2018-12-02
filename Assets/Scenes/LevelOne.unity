@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44129857, g: 0.4901014, b: 0.57015187, a: 1}
+  m_IndirectSpecularColor: {r: 0.44129837, g: 0.4901008, b: 0.57015085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2412,12 +2412,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 8000
+    damper: 400
     targetPosition: 0.25
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: 0.1
-  m_Mass: 20
+  m_Mass: 150
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -2470,12 +2470,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 8000
+    damper: 400
     targetPosition: 0.25
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: 0.1
-  m_Mass: 20
+  m_Mass: 150
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -21401,12 +21401,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 8000
+    damper: 400
     targetPosition: 0.25
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: 0.1
-  m_Mass: 20
+  m_Mass: 150
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
@@ -24337,12 +24337,12 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 8000
+    damper: 400
     targetPosition: 0.25
   m_SuspensionDistance: 0.5
   m_ForceAppPointDistance: 0.1
-  m_Mass: 20
+  m_Mass: 150
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
