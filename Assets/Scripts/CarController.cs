@@ -1,8 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
-public class CarController : MonoBehaviour
-{
+struct movement{
+    public float time;
+    public float forward;
+    public float turn;
+    public float brake;
+
+    public movement(float ti, float fo, float tu, float br)
+    {
+        time = ti;
+        forward = fo;
+        turn = tu;
+        brake = br;
+    }
+}
+
+public class CarController : MonoBehaviour {
+
+    static private bool userControlled = true;
+    static private Queue<movement> userMovement = new Queue<movement>();
+
+    static Vector3 originalPosition;
+    static Quaternion originalRotation;
+
     public WheelCollider WheelFL;//the wheel colliders
     public WheelCollider WheelFR;
     public WheelCollider WheelBL;
@@ -27,16 +50,36 @@ public class CarController : MonoBehaviour
     private Rigidbody rb;//rigid body of car
 
 
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody>();
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        if (userControlled){
+            userMovement.Clear();
+        }
     }
 
-    void FixedUpdate() //fixed update is more physics realistic
-    {
-        Forward = Input.GetAxis("Vertical");
-        Turn = Input.GetAxis("Horizontal");
-        Brake = Input.GetAxis("Jump");
+    private void Reset(){
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+    }
+
+    void FixedUpdate(){
+        if (userControlled){
+            Forward = Input.GetAxis("Vertical");
+            Turn = Input.GetAxis("Horizontal");
+            Brake = Input.GetAxis("Jump");
+            
+            userMovement.Enqueue(new movement(Time.timeSinceLevelLoad, Forward, Turn, Brake));
+        }
+        else{
+            if ((userMovement.Count > 0) && (userMovement.Peek().time < Time.timeSinceLevelLoad)) {
+                Forward = userMovement.Peek().forward;
+                Turn = userMovement.Peek().turn;
+                Brake = userMovement.Peek().brake;
+                userMovement.Dequeue();
+            }
+        }
 
         WheelFL.steerAngle = maxSteerAngle * Turn;
         WheelFR.steerAngle = maxSteerAngle * Turn;
@@ -82,8 +125,11 @@ public class CarController : MonoBehaviour
                                                //BR.transform.rotation = BRq;
 
         if (Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f){
+            userControlled = !userControlled;
+            //this.Reset();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        print(Time.timeSinceLevelLoad);
 
     }
 }
