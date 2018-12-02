@@ -4,17 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 struct movement{
-    public float time;
-    public float forward;
-    public float turn;
-    public float brake;
+    public Vector3 position;
+    public Quaternion rotation;
 
-    public movement(float ti, float fo, float tu, float br)
+    public movement(Vector3 po, Quaternion ro)
     {
-        time = ti;
-        forward = fo;
-        turn = tu;
-        brake = br;
+        position = po;
+        rotation = ro;
     }
 }
 
@@ -69,33 +65,34 @@ public class CarController : MonoBehaviour {
             Forward = Input.GetAxis("Vertical");
             Turn = Input.GetAxis("Horizontal");
             Brake = Input.GetAxis("Jump");
-            
-            userMovement.Enqueue(new movement(Time.timeSinceLevelLoad, Forward, Turn, Brake));
+
+            WheelFL.steerAngle = maxSteerAngle * Turn;
+            WheelFR.steerAngle = maxSteerAngle * Turn;
+
+            currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000; //formula for calculating speed in kmph
+
+            if (currentSpeed < topSpeed)
+            {
+                WheelBL.motorTorque = maxTorque * Forward;//run the wheels on back left and back right
+                WheelBR.motorTorque = maxTorque * Forward;
+            }//the top speed will not be accurate but will try to slow the car before top speed
+
+            WheelBL.brakeTorque = maxBrakeTorque * Brake;
+            WheelBR.brakeTorque = maxBrakeTorque * Brake;
+            WheelFL.brakeTorque = maxBrakeTorque * Brake;
+            WheelFR.brakeTorque = maxBrakeTorque * Brake;
+
+            userMovement.Enqueue(new movement(transform.position, transform.rotation));
         }
-        else{
-            if ((userMovement.Count > 0) && (userMovement.Peek().time < Time.timeSinceLevelLoad)) {
-                Forward = userMovement.Peek().forward;
-                Turn = userMovement.Peek().turn;
-                Brake = userMovement.Peek().brake;
+        else
+        {
+            if (userMovement.Count > 0)
+            {
+                transform.position = userMovement.Peek().position;
+                transform.rotation = userMovement.Peek().rotation;
                 userMovement.Dequeue();
             }
         }
-
-        WheelFL.steerAngle = maxSteerAngle * Turn;
-        WheelFR.steerAngle = maxSteerAngle * Turn;
-
-        currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000; //formula for calculating speed in kmph
-
-        if (currentSpeed < topSpeed)
-        {
-            WheelBL.motorTorque = maxTorque * Forward;//run the wheels on back left and back right
-            WheelBR.motorTorque = maxTorque * Forward;
-        }//the top speed will not be accurate but will try to slow the car before top speed
-
-        WheelBL.brakeTorque = maxBrakeTorque * Brake;
-        WheelBR.brakeTorque = maxBrakeTorque * Brake;
-        WheelFL.brakeTorque = maxBrakeTorque * Brake;
-        WheelFR.brakeTorque = maxBrakeTorque * Brake;
 
     }
     void Update()//update is called once per frame
