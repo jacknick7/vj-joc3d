@@ -12081,8 +12081,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 492410101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.10000001, y: -0.24499997, z: -0.245}
-  m_LocalScale: {x: 0.25, y: 0.12, z: 0.27}
+  m_LocalPosition: {x: 0.10000001, y: -0.228, z: -0.239}
+  m_LocalScale: {x: 0.23485, y: 0.12, z: 0.27}
   m_Children:
   - {fileID: 113991708}
   - {fileID: 860369213}
@@ -19734,6 +19734,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 710901594}
   m_Mesh: {fileID: 4300134, guid: 1022dfdad24793a4fa2277c5e433f6aa, type: 3}
+--- !u!1001 &719791096
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.419
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108059448715162, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de773b05dfe86e34380d6270ff67643e, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &719983869
 GameObject:
   m_ObjectHideFlags: 0
@@ -52502,7 +52544,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4767880645905598, guid: bce48315944546743863df477d096ca0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 40.16
+      value: 39.72
       objectReference: {fileID: 0}
     - target: {fileID: 4767880645905598, guid: bce48315944546743863df477d096ca0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -56469,6 +56511,48 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2588874c24741f4d9329929832363f1, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2066134784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066134785}
+  - component: {fileID: 2066134786}
+  m_Layer: 0
+  m_Name: Level Logic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2066134785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2066134784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066134786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2066134784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ba8820cd6165d498d267a001214a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_rutes: 9
+  time: 60
 --- !u!1 &2067295725
 GameObject:
   m_ObjectHideFlags: 0
