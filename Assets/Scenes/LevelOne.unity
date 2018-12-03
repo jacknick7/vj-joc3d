@@ -13619,8 +13619,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9ae63696e9072c4d8306e4eaae1313d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   player: {fileID: 1165836722}
 --- !u!1 &537949776
 GameObject:
@@ -32632,8 +32632,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3806f2f9224d6bd49846b1fcc94e7115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   WheelFL: {fileID: 113991709}
   WheelFR: {fileID: 860369214}
   WheelBL: {fileID: 785759354}
@@ -54908,7 +54908,6 @@ MeshRenderer:
 --- !u!33 &2068066700
 MeshFilter:
   m_ObjectHideFlags: 0
-<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 33780233352008998, guid: bce48315944546743863df477d096ca0,
     type: 2}
   m_PrefabInternal: {fileID: 0}
@@ -54998,17 +54997,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7ba8820cd6165d498d267a001214a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   max_rutes: 9
   time: 60
 --- !u!1 &2067295725
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1569037734291756, guid: bce48315944546743863df477d096ca0,
-=======
-  m_CorrespondingSourceObject: {fileID: 33906831612662928, guid: bce48315944546743863df477d096ca0,
->>>>>>> 9230e381f97832027a50f88df6327398d9fc9fb2
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068066697}
