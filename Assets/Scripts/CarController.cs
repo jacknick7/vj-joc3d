@@ -126,7 +126,6 @@ public class CarController : MonoBehaviour {
             //this.Reset();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        print(Time.timeSinceLevelLoad);
 
     }
 }
