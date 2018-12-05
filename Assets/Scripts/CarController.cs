@@ -16,7 +16,7 @@ struct movement{
 public class CarController : MonoBehaviour {
     static private int numCars = 10;
 
-    static private int carStatus = 0;
+    static private int carStatus = 1;
     static private Queue<movement> userMovement = new Queue<movement>();
 
     static Vector3 originalPosition;
@@ -60,10 +60,12 @@ public class CarController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        if (carStatus < 2){
+        if (carStatus < 1){
+            this.gameObject.SetActive(false);
+        }
+        else if(carStatus < 2){
             userMovement.Clear();
         }
-        this.gameObject.SetActive(false);
     }
 
     private void Reset(){
