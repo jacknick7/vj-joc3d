@@ -20,8 +20,6 @@ public class CarController : MonoBehaviour {
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
-    public int carId = 0;
-
     public WheelCollider WheelFL;//the wheel colliders
     public WheelCollider WheelFR;
     public WheelCollider WheelBL;
@@ -73,7 +71,7 @@ public class CarController : MonoBehaviour {
 
     void FixedUpdate(){
         if (carStatus == 1){
-            Forward = Input.GetAxis("Vertical");
+            Forward = -Input.GetAxis("Vertical");
             Turn = Input.GetAxis("Horizontal");
             Brake = Input.GetAxis("Jump");
 
@@ -140,5 +138,6 @@ public class CarController : MonoBehaviour {
     public void setCarStatus(int status) {
         carStatus = status;
         gameObject.SetActive(!(status == 0));
+        Reset();
     }
 }
