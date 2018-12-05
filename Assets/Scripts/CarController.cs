@@ -7,30 +7,32 @@ struct movement{
     public Vector3 position;
     public Quaternion rotation;
 
-    public movement(Vector3 po, Quaternion ro)
-    {
+    public movement(Vector3 po, Quaternion ro){
         position = po;
         rotation = ro;
     }
 }
 
 public class CarController : MonoBehaviour {
+    static private int numCars = 10;
 
-    static private bool userControlled = true;
+    static private int carStatus = 0;
     static private Queue<movement> userMovement = new Queue<movement>();
 
     static Vector3 originalPosition;
     static Quaternion originalRotation;
+
+    public int carId = 0;
 
     public WheelCollider WheelFL;//the wheel colliders
     public WheelCollider WheelFR;
     public WheelCollider WheelBL;
     public WheelCollider WheelBR;
 
-    public GameObject FL;//the wheel gameobjects
-    public GameObject FR;
-    public GameObject BL;
-    public GameObject BR;
+    //public GameObject FL;//the wheel gameobjects
+    //public GameObject FR;
+    //public GameObject BL;
+    //public GameObject BR;
 
     public float topSpeed = 250f;//the top speed
     public float maxTorque = 200f;//the maximum torque to apply to wheels
@@ -45,14 +47,23 @@ public class CarController : MonoBehaviour {
 
     private Rigidbody rb;//rigid body of car
 
+    public void setUserControlled(){
+        carStatus = 1;
+        this.gameObject.SetActive(true);
+    }
+
+    public void setUserRecorded(){
+        carStatus = 2;
+    }
 
     void Start(){
         rb = GetComponent<Rigidbody>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        if (userControlled){
+        if (carStatus < 2){
             userMovement.Clear();
         }
+        this.gameObject.SetActive(false);
     }
 
     private void Reset(){
@@ -61,7 +72,7 @@ public class CarController : MonoBehaviour {
     }
 
     void FixedUpdate(){
-        if (userControlled){
+        if (carStatus == 1){
             Forward = Input.GetAxis("Vertical");
             Turn = Input.GetAxis("Horizontal");
             Brake = Input.GetAxis("Jump");
@@ -84,8 +95,7 @@ public class CarController : MonoBehaviour {
 
             userMovement.Enqueue(new movement(transform.position, transform.rotation));
         }
-        else
-        {
+        else if(carStatus == 2){
             if (userMovement.Count > 0)
             {
                 transform.position = userMovement.Peek().position;
@@ -121,9 +131,7 @@ public class CarController : MonoBehaviour {
                                                //BR.transform.position = BRv;
                                                //BR.transform.rotation = BRq;
 
-        if (Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f){
-            userControlled = !userControlled;
-            //this.Reset();
+        if ((Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f) && (carStatus == 1)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
