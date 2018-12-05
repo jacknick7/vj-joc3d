@@ -14,13 +14,11 @@ struct movement{
 }
 
 public class CarController : MonoBehaviour {
-    static private int numCars = 10;
+    private int carStatus = 0;
+    private Queue<movement> userMovement = new Queue<movement>();
 
-    static private int carStatus = 1;
-    static private Queue<movement> userMovement = new Queue<movement>();
-
-    static Vector3 originalPosition;
-    static Quaternion originalRotation;
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
 
     public int carId = 0;
 
@@ -60,10 +58,10 @@ public class CarController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        if (carStatus < 1){
+        /*if (carStatus < 1){
             this.gameObject.SetActive(false);
         }
-        else if(carStatus < 2){
+        else */if(carStatus < 2){
             userMovement.Clear();
         }
     }
@@ -137,5 +135,10 @@ public class CarController : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+    }
+
+    public void setCarStatus(int status) {
+        carStatus = status;
+        gameObject.SetActive(!(status == 0));
     }
 }

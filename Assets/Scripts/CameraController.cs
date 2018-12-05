@@ -23,10 +23,10 @@ public class CameraController : MonoBehaviour
         Vector3 maxPosBL = GameObject.Find("CameraPosBL").gameObject.transform.position;
         Vector3 maxPosTR = GameObject.Find("CameraPosTR").gameObject.transform.position;
 
-        print("CAMERA");
-        print(supposedPos);
-        print("MAX");
-        print(maxPosBL);
+        //print("CAMERA");
+        //print(supposedPos);
+        //print("MAX");
+        //print(maxPosBL);
 
         if((supposedPos.x >= maxPosBL.x) && (supposedPos.x <= maxPosTR.x)){
             transform.position = new Vector3(supposedPos.x, transform.position.y, transform.position.z);
