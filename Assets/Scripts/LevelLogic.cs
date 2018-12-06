@@ -65,4 +65,12 @@ public class LevelLogic : MonoBehaviour {
     public int getMaxRoutes() {
         return max_routes;
     }
+
+    public GameObject getCurrentCar() {
+        return vehicles[actual_route];
+    }
+
+    public GameObject getCurrentDestination() {
+        return destinations[actual_route];
+    }
 }
