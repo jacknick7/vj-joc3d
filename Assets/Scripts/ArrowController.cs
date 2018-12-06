@@ -24,10 +24,10 @@ public class ArrowController : MonoBehaviour {
             }
         }
 
-        print("DATA");
-        print(opo);
-        print(con);
-        print(angle);
+        //print("DATA");
+        //print(opo);
+        //print(con);
+        //print(angle);
 
         transform.Rotate(new Vector3(0, 0, angle - transform.eulerAngles.z));
     }
