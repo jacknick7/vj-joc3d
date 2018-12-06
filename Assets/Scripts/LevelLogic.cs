@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelLogic : MonoBehaviour {
 
+    [SerializeField] int level = 3;
     [SerializeField] int max_routes = 10;
     int actual_route;
     [SerializeField] float time = 60.0f;
     GameObject[] vehicles;
     GameObject[] destinations;
     GameObject current_camera;
+    GameObject characterUI;
     string current_player_name = "none";
 
 
@@ -30,6 +33,8 @@ public class LevelLogic : MonoBehaviour {
         destinations[actual_route].SetActive(true);
         current_camera = GameObject.Find("Main Camera");
         current_camera.GetComponent<CameraController>().player = vehicles[actual_route];
+        characterUI = GameObject.Find("Character");
+        characterUI.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UICharacter-" + level + '-' + (actual_route + 1));
         current_player_name = "MainPlayer" + actual_route;
         //time = 60.0f;
     }
@@ -39,6 +44,8 @@ public class LevelLogic : MonoBehaviour {
         time -= Time.deltaTime;
         if (time < 0.0f)
             SceneManager.LoadScene(0);  // no temps, perd
+        if (Input.GetAxis("Reset") != 0)
+            SceneManager.LoadScene(1);
     }
 
     public void incTime(float extra_time) {
@@ -55,6 +62,7 @@ public class LevelLogic : MonoBehaviour {
         vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
         destinations[actual_route].SetActive(true);
         current_camera.GetComponent<CameraController>().player = vehicles[actual_route];
+        characterUI.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UICharacter-" + level + '-' + (actual_route + 1));
         current_player_name = "MainPlayer" + actual_route;
     }
 
