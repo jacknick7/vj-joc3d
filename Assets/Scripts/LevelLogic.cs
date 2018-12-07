@@ -54,7 +54,9 @@ public class LevelLogic : MonoBehaviour {
     }
 
     public void newRoute() {
-        vehicles[actual_route].GetComponent<CarController>().setCarStatus(2);
+        for (int i = 0; i <= actual_route; ++i){
+            vehicles[i].GetComponent<CarController>().setCarStatusAndReset(2);
+        }
         destinations[actual_route].SetActive(false);
         actual_route++;
         if (actual_route == max_routes)

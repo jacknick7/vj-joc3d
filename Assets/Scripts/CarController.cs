@@ -16,32 +16,26 @@ struct movement{
 public class CarController : MonoBehaviour {
     private int carStatus = 0;
     private Queue<movement> userMovement = new Queue<movement>();
+    private Queue<movement> userMovementCurrent = new Queue<movement>();
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
-    public WheelCollider WheelFL;//the wheel colliders
+    public WheelCollider WheelFL;
     public WheelCollider WheelFR;
     public WheelCollider WheelBL;
     public WheelCollider WheelBR;
 
-    //public GameObject FL;//the wheel gameobjects
-    //public GameObject FR;
-    //public GameObject BL;
-    //public GameObject BR;
-
-    public float topSpeed = 250f;//the top speed
-    public float maxTorque = 200f;//the maximum torque to apply to wheels
+    public float topSpeed = 150f;
+    public float maxTorque = 65f;
     public float maxSteerAngle = 45f;
-    public float currentSpeed;
-    public float maxBrakeTorque = 2200;
+    public float currentSpeed = 0f;
+    public float maxBrakeTorque = 150f;
 
 
-    private float Forward;//forward axis
-    private float Turn;//turn axis
-    private float Brake;//brake axis
-
-    private Rigidbody rb;//rigid body of car
+    private float Forward;
+    private float Turn;
+    private float Brake;
 
     public void setUserControlled(){
         carStatus = 1;
@@ -53,7 +47,6 @@ public class CarController : MonoBehaviour {
     }
 
     void Start(){
-        rb = GetComponent<Rigidbody>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         /*if (carStatus < 1){
@@ -65,8 +58,10 @@ public class CarController : MonoBehaviour {
     }
 
     private void Reset(){
+        currentSpeed = 0.0f;
         transform.position = originalPosition;
         transform.rotation = originalRotation;
+        userMovementCurrent = new Queue<movement>(userMovement);
     }
 
     void FixedUpdate(){
@@ -78,13 +73,13 @@ public class CarController : MonoBehaviour {
             WheelFL.steerAngle = maxSteerAngle * Turn;
             WheelFR.steerAngle = maxSteerAngle * Turn;
 
-            currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000; //formula for calculating speed in kmph
+            currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000;
 
             if (currentSpeed < topSpeed)
             {
-                WheelBL.motorTorque = maxTorque * Forward;//run the wheels on back left and back right
+                WheelBL.motorTorque = maxTorque * Forward;
                 WheelBR.motorTorque = maxTorque * Forward;
-            }//the top speed will not be accurate but will try to slow the car before top speed
+            }
 
             WheelBL.brakeTorque = maxBrakeTorque * Brake;
             WheelBR.brakeTorque = maxBrakeTorque * Brake;
@@ -94,16 +89,17 @@ public class CarController : MonoBehaviour {
             userMovement.Enqueue(new movement(transform.position, transform.rotation));
         }
         else if(carStatus == 2){
-            if (userMovement.Count > 0)
-            {
-                transform.position = userMovement.Peek().position;
-                transform.rotation = userMovement.Peek().rotation;
-                userMovement.Dequeue();
+            if (userMovementCurrent.Count > 0){
+                transform.position = userMovementCurrent.Peek().position;
+                transform.rotation = userMovementCurrent.Peek().rotation;
+                if (userMovementCurrent.Count > 1){
+                    userMovementCurrent.Dequeue();
+                }
             }
         }
 
     }
-    void Update()//update is called once per frame
+    void Update()
     {
         Quaternion flq;//rotation of wheel collider
         Vector3 flv;//position of wheel collider
@@ -138,6 +134,13 @@ public class CarController : MonoBehaviour {
     public void setCarStatus(int status) {
         carStatus = status;
         gameObject.SetActive(!(status == 0));
+    }
+
+    public void setCarStatusAndReset(int status) {
+        carStatus = status;
+        gameObject.SetActive(!(status == 0));
         Reset();
+        //print("RESETED WITH POSITIONS");
+        //print(originalPosition);
     }
 }
