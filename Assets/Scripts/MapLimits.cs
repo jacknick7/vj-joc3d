@@ -13,8 +13,8 @@ public class MapLimits : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         string current_player_name = logic.GetComponent<LevelLogic>().getCurrentPlayerName();
         if (other.gameObject.name == current_player_name) {
-            other.gameObject.GetComponent<CarController>().setCarStatus(0);
-            other.gameObject.GetComponent<CarController>().setCarStatus(1);
+            other.gameObject.GetComponent<CarController>().setCarStatusAndReset(0);
+            other.gameObject.GetComponent<CarController>().setCarStatusAndReset(1);
         }
     }
 }
