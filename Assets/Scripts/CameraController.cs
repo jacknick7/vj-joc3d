@@ -15,6 +15,27 @@ public class CameraController : MonoBehaviour
         offset = transform.position - player.transform.position;
     }
 
+    public void Restart(){
+        supposedPos = player.transform.position + offset;
+        Vector3 maxPosBL = GameObject.Find("CameraPosBL").gameObject.transform.position;
+        Vector3 maxPosTR = GameObject.Find("CameraPosTR").gameObject.transform.position;
+
+        if (supposedPos.x < maxPosBL.x) {
+            transform.position = new Vector3(maxPosBL.x, transform.position.y, transform.position.z);
+        }
+        else if(supposedPos.x > maxPosTR.x) {
+            transform.position = new Vector3(maxPosTR.x, transform.position.y, transform.position.z);
+
+        }
+        if (supposedPos.z < maxPosBL.z) {
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxPosBL.z);
+        }
+        else if(supposedPos.z > maxPosTR.z) {
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxPosTR.z);
+
+        }
+    }
+
     // LateUpdate is called after Update each frame
     void LateUpdate()
     {

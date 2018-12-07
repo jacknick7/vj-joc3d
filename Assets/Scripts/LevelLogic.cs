@@ -64,6 +64,7 @@ public class LevelLogic : MonoBehaviour {
         vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
         destinations[actual_route].SetActive(true);
         current_camera.GetComponent<CameraController>().player = vehicles[actual_route];
+        current_camera.GetComponent<CameraController>().Restart();
         characterUI.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UICharacter-" + level + '-' + (actual_route + 1));
         current_player_name = "MainPlayer" + actual_route;
     }
