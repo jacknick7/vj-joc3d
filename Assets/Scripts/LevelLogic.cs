@@ -83,4 +83,8 @@ public class LevelLogic : MonoBehaviour {
     public GameObject getCurrentDestination() {
         return destinations[actual_route];
     }
+
+    public float getTime() {
+        return time;
+    }
 }
