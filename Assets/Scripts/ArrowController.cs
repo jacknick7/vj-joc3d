@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour {
 	void Update () {
         GameObject vehicle = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentCar();
-        GameObject destination = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentDestination();
+        GameObject destination = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentDestination().GetComponent<BoxCollider>().gameObject;
 
         Vector3 pos1 = vehicle.transform.position;
         Vector3 pos2 = destination.transform.position;
