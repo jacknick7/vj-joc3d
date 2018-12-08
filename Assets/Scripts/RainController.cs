@@ -5,8 +5,12 @@ using UnityEngine;
 public class RainController : MonoBehaviour {
     public bool raining = false;
 
-    public void setRaning(bool actRaining){
+    public void setRanin(bool actRaining){
         raining = actRaining;
+    }
+
+    public void changeRain(){
+        raining = !raining;
     }
 
     void FixedUpdate(){

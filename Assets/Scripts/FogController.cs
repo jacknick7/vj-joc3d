@@ -5,8 +5,12 @@ using UnityEngine;
 public class FogController : MonoBehaviour{
     public bool fog = false;
 
-    public void setRaning(bool actFog){
+    public void setFog(bool actFog){
         fog = actFog;
+    }
+
+    public void changeFog(){
+        fog = !fog;
     }
 
     void FixedUpdate(){

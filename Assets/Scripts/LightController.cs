@@ -9,6 +9,10 @@ public class LightController : MonoBehaviour {
         day = actDay;
     }
 
+    public void changeDay(){
+        day = !day;
+    }
+
     void FixedUpdate(){
         transform.GetChild(0).gameObject.SetActive(day);
         transform.GetChild(1).gameObject.SetActive(!day);
