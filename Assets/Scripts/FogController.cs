@@ -11,6 +11,11 @@ public class FogController : MonoBehaviour{
 
     public void changeFog(){
         fog = !fog;
+        if (fog){
+            transform.GetChild(0).gameObject.SetActive(fog);
+            transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Simulate(120.0f);
+            transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     void FixedUpdate(){
