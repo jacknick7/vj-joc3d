@@ -5,10 +5,10 @@ using UnityEngine;
 public class ArrowController : MonoBehaviour {
 	void Update () {
         GameObject vehicle = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentCar();
-        GameObject destination = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentDestination().GetComponent<BoxCollider>().gameObject;
+        GameObject destination = GameObject.Find("Level Logic").GetComponent<LevelLogic>().getCurrentDestination();
 
         Vector3 pos1 = vehicle.transform.position;
-        Vector3 pos2 = destination.transform.position;
+        Vector3 pos2 = destination.GetComponent<PositionRectifier>().getRectifiedPosition();
 
         float opo = pos2.x - pos1.x;
         float con = pos2.z - pos1.z;
