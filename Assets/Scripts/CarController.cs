@@ -125,9 +125,9 @@ public class CarController : MonoBehaviour {
                                                //BR.transform.position = BRv;
                                                //BR.transform.rotation = BRq;
 
-        if ((Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f) && (carStatus == 1)){
+        /*if ((Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f) && (carStatus == 1)){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        }*/
 
     }
 
