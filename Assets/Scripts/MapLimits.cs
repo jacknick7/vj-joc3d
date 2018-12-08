@@ -5,16 +5,19 @@ using UnityEngine;
 public class MapLimits : MonoBehaviour {
 
     GameObject logic;
+    string current_player_name;
 
     void Start() {
         logic = GameObject.Find("Level Logic");
     }
 
     void OnTriggerEnter(Collider other) {
-        string current_player_name = logic.GetComponent<LevelLogic>().getCurrentPlayerName();
         if (other.gameObject.name == current_player_name) {
-            other.gameObject.GetComponent<CarController>().setCarStatusAndReset(0);
-            other.gameObject.GetComponent<CarController>().setCarStatusAndReset(1);
+            logic.GetComponent<LevelLogic>().resetRoute();
         }
+    }
+
+    public void setCurrentPlayerName(string name) {
+        current_player_name = name;
     }
 }

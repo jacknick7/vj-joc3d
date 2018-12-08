@@ -16,5 +16,9 @@ public class GodModeController : MonoBehaviour {
             //Fog
             GameObject.Find("FogController").GetComponent<FogController>().changeFog();
         }
+        else if (Input.GetKeyDown(KeyCode.N)){
+            //NextRoute
+            GameObject.Find("Level Logic").GetComponent<LevelLogic>().newRoute();
+        }
     }
 }
