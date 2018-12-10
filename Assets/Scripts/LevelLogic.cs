@@ -85,23 +85,27 @@ public class LevelLogic : MonoBehaviour {
             vehicles[i].GetComponent<CarController>().setCarStatusAndReset(2);
         }
         destinations[actual_route].SetActive(false);
-        actual_route++;
-        if (actual_route == max_routes)
+        if (actual_route + 1 == max_routes)
             SceneManager.LoadScene(0);  // tots els recorreguts complerts, carrega nou lvl o guanya
-        vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
-        destinations[actual_route].SetActive(true);
-        current_camera.GetComponent<CameraController>().player = vehicles[actual_route];
-        characterUI.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UICharacter-" + level + '-' + (actual_route + 1));
-        maplimits.GetComponent<MapLimits>().setCurrentPlayerName("MainPlayer" + actual_route);
-        for (int i = 0; i < ntimes; ++i) {
-            times[i].GetComponent<TimeObject>().setCurrentPlayerName("MainPlayer" + actual_route);
-            if (actual_route == 4 && i >= ntimes / 2) {
-                times[i].SetActive(true);
+        else {
+            actual_route++;
+            vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
+            destinations[actual_route].SetActive(true);
+            current_camera.GetComponent<CameraController>().player = vehicles[actual_route];
+            characterUI.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UICharacter-" + level + '-' + (actual_route + 1));
+            maplimits.GetComponent<MapLimits>().setCurrentPlayerName("MainPlayer" + actual_route);
+            for (int i = 0; i < ntimes; ++i)
+            {
+                times[i].GetComponent<TimeObject>().setCurrentPlayerName("MainPlayer" + actual_route);
+                if (actual_route == 4 && i >= ntimes / 2)
+                {
+                    times[i].SetActive(true);
+                }
             }
+            levelConditions();
+            current_player_name = "MainPlayer" + actual_route;
+            old_time = time;
         }
-        levelConditions();
-        current_player_name = "MainPlayer" + actual_route;
-        old_time = time;
     }
 
     public void resetRoute() {
