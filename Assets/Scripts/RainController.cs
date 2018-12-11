@@ -7,6 +7,11 @@ public class RainController : MonoBehaviour {
 
     public void setRain(bool actRaining){
         raining = actRaining;
+        if (raining){
+            transform.GetChild(0).gameObject.SetActive(raining);
+            transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Simulate(10.0f);
+            transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     public void changeRain(){

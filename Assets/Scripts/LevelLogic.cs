@@ -61,7 +61,7 @@ public class LevelLogic : MonoBehaviour {
         current_player_name = "MainPlayer" + actual_route;
         pressed = false;
         dayChange = false;
-        levelConditions();
+        roundConditions();
         //time = 60.0f;
     }
 	
@@ -107,7 +107,7 @@ public class LevelLogic : MonoBehaviour {
                     times[i].SetActive(true);
                 }
             }
-            levelConditions();
+            roundConditions();
             current_player_name = "MainPlayer" + actual_route;
             old_time = time;
         }
@@ -144,8 +144,44 @@ public class LevelLogic : MonoBehaviour {
         return time;
     }
 
-    void levelConditions() {
-        if (actual_route > 4 && !dayChange) {
+    void roundConditions() {
+        if(level == 1) {
+            if(actual_route <= (max_routes/2)){
+                day.GetComponent<LightController>().setDay(true);
+                weatherRain.GetComponent<RainController>().setRain(false);
+                weatherFog.GetComponent<FogController>().setFog(false);
+            }
+            else{
+                day.GetComponent<LightController>().setDay(0.15f *(max_routes-actual_route-1));
+            }
+        }
+        else if(level == 2){
+            day.GetComponent<LightController>().setDay(false);
+            if(actual_route <= (max_routes / 2)) {
+                weatherRain.GetComponent<RainController>().setRain(false);
+            }
+            else{
+                weatherRain.GetComponent<RainController>().setRain(true);
+                day.GetComponent<LightController>().setDay(0.15f * actual_route);
+            }
+            weatherFog.GetComponent<FogController>().setFog(false);
+        }
+        else if(level == 3){
+            if (actual_route <= (max_routes / 3)){
+                weatherRain.GetComponent<RainController>().setRain(true);
+            }
+            else{
+                if (actual_route <= 3*(max_routes / 4)){
+                    weatherRain.GetComponent<RainController>().setRain(false);
+                }
+                else{
+                    weatherRain.GetComponent<RainController>().setRain(true);
+                }
+                weatherFog.GetComponent<FogController>().setFog(true);
+            }
+
+        }
+        /*if (actual_route > 4 && !dayChange) {
             int dayProb = Random.Range(0, 3);
             if (dayProb == 0) {
                 day.GetComponent<LightController>().changeDay();
@@ -155,6 +191,6 @@ public class LevelLogic : MonoBehaviour {
         int rainProb = Random.Range(0, 5);
         int fogProb = Random.Range(0, 5);
         if (rainProb == 0) weatherRain.GetComponent<RainController>().changeRain();
-        if (fogProb == 0) weatherFog.GetComponent<FogController>().changeFog();
+        if (fogProb == 0) weatherFog.GetComponent<FogController>().changeFog();*/
     }
 }
