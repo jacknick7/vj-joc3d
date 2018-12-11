@@ -48,8 +48,8 @@ public class CameraController : MonoBehaviour
         //print(supposedPos);
         //print("MAX");
         //print(maxPosBL);
-
-        if((supposedPos.x >= maxPosBL.x) && (supposedPos.x <= maxPosTR.x)){
+        
+        if ((supposedPos.x >= maxPosBL.x) && (supposedPos.x <= maxPosTR.x)){
             transform.position = new Vector3(supposedPos.x, transform.position.y, transform.position.z);
         }
         else if (supposedPos.x < maxPosBL.x){
