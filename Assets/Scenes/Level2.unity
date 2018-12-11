@@ -130481,8 +130481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd184b5346012543a57f7f636f854cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 2
   max_routes: 10
+  max_levels: 3
+  scene_menu: 0
   time: 240
   ntimes: 5
 --- !u!1 &2067295725
