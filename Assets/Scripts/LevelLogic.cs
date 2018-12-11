@@ -10,6 +10,8 @@ public class LevelLogic : MonoBehaviour {
     [SerializeField] int max_routes = 10;
     [SerializeField] int max_levels = 3;
     [SerializeField] int scene_menu = 0;
+    [SerializeField] int scene_win = 4;
+    [SerializeField] int scene_lose = 5;
     int actual_route;
     [SerializeField] float time = 60.0f;
     float old_time;
@@ -69,7 +71,7 @@ public class LevelLogic : MonoBehaviour {
 	void Update () {
         time -= Time.deltaTime;
         if (time < 0.0f)
-            SceneManager.LoadScene(scene_menu);  // no temps, perd
+            SceneManager.LoadScene(scene_lose);  // no temps, perd
         if (Input.GetKeyDown(KeyCode.R) && !pressed) {
             resetRoute();
             pressed = true;
@@ -91,7 +93,7 @@ public class LevelLogic : MonoBehaviour {
             if (level < max_levels)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             else
-                SceneManager.LoadScene(scene_menu);
+                SceneManager.LoadScene(scene_win);
         else {
             actual_route++;
             vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
