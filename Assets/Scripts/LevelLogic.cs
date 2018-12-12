@@ -164,7 +164,7 @@ public class LevelLogic : MonoBehaviour {
             }
             else{
                 weatherRain.GetComponent<RainController>().setRain(true);
-                day.GetComponent<LightController>().setDay(0.15f * actual_route);
+                day.GetComponent<LightController>().setDay(0.15f * (actual_route - (max_routes / 2)));
             }
             weatherFog.GetComponent<FogController>().setFog(false);
         }
