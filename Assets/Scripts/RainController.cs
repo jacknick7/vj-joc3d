@@ -11,7 +11,9 @@ public class RainController : MonoBehaviour {
             transform.GetChild(0).gameObject.SetActive(raining);
             transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Simulate(10.0f);
             transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+            GameObject.Find("AudioRain").GetComponent<AudioSource>().Play();
         }
+        else GameObject.Find("AudioRain").GetComponent<AudioSource>().Stop();
     }
 
     public void changeRain(){
