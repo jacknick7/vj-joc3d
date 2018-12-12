@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class LevelLogic : MonoBehaviour {
 
-    [SerializeField] int level = 3;
+    int level;
     [SerializeField] int max_routes = 10;
     [SerializeField] int max_levels = 3;
     [SerializeField] int scene_menu = 0;
     [SerializeField] int scene_win = 4;
     [SerializeField] int scene_lose = 5;
     int actual_route;
-    [SerializeField] float time = 60.0f;
+    float time;
     float old_time;
     GameObject[] vehicles;
     GameObject[] destinations;
@@ -30,10 +30,13 @@ public class LevelLogic : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //max_rutes = 9;
+        level = GlobalVars.Level;
+        time = GlobalVars.Time;
         old_time = time;
         vehicles = new GameObject[max_routes];
         destinations = new GameObject[max_routes];
         actual_route = 0;
+        GlobalVars.Route = actual_route;
         for (int i = 0; i < max_routes; ++i) {
             vehicles[i] = GameObject.Find("MainPlayer" + i);
             vehicles[i].GetComponent<CarController>().setCarStatus(0);
@@ -89,13 +92,19 @@ public class LevelLogic : MonoBehaviour {
             vehicles[i].GetComponent<CarController>().setCarStatusAndReset(2);
         }
         destinations[actual_route].SetActive(false);
-        if (actual_route + 1 == max_routes) // tots els recorreguts complerts, carrega nou lvl o guanya
-            if (level < max_levels)
+        if (actual_route + 1 == max_routes) {// tots els recorreguts complerts, carrega nou lvl o guanya
+            GlobalVars.Time = time;
+            if (level < max_levels) {
+                GlobalVars.Level = GlobalVars.Level + 1;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
             else
                 SceneManager.LoadScene(scene_win);
-        else {
+        }
+        else
+        {
             actual_route++;
+            GlobalVars.Route = actual_route;
             vehicles[actual_route].GetComponent<CarController>().setCarStatus(1);
             destinations[actual_route].SetActive(true);
             current_camera.GetComponent<CameraController>().player = vehicles[actual_route];

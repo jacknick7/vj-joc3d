@@ -8,6 +8,8 @@ public class MenuMain : MonoBehaviour {
     public int LevelOne = 1;
 
 	public void StartLevelOne() {
+        GlobalVars.Level = 1;
+        GlobalVars.Time = 240;
         SceneManager.LoadScene(LevelOne);
     }
 
