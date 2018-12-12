@@ -23,6 +23,7 @@ public class LevelLogic : MonoBehaviour {
     [SerializeField] int ntimes = 5;
     GameObject[] times;
     GameObject day, weatherRain, weatherFog;
+    GameObject load;
     string current_player_name = "none";
     bool pressed, dayChange;
 
@@ -63,6 +64,8 @@ public class LevelLogic : MonoBehaviour {
         day = GameObject.Find("LightController");
         weatherRain = GameObject.Find("RainController");
         weatherFog = GameObject.Find("FogController");
+        load = GameObject.Find("LoadingCanvas");
+        load.SetActive(false);
         current_player_name = "MainPlayer" + actual_route;
         pressed = false;
         dayChange = false;
@@ -85,6 +88,7 @@ public class LevelLogic : MonoBehaviour {
     public void incTime(float extra_time) {
         Debug.Log(extra_time);
         time += extra_time;
+        old_time += extra_time;
     }
 
     public void newRoute() {
@@ -96,6 +100,7 @@ public class LevelLogic : MonoBehaviour {
             GlobalVars.Time = time;
             if (level < max_levels) {
                 GlobalVars.Level = GlobalVars.Level + 1;
+                load.SetActive(true);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else

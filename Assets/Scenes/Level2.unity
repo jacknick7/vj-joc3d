@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657642, g: 0.49641156, b: 0.5748181, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32454,7 +32454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &552454683
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32470,7 +32470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2022.2438, y: 9689.023}
+  m_AnchoredPosition: {x: -2022.2437, y: 9689.023}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &552454684
@@ -135649,13 +135649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd184b5346012543a57f7f636f854cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 2
   max_routes: 10
   max_levels: 3
   scene_menu: 0
   scene_win: 4
   scene_lose: 5
-  time: 240
   ntimes: 5
 --- !u!1 &2067295725
 GameObject:

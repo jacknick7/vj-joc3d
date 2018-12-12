@@ -24,9 +24,13 @@ public class AudioRadio : MonoBehaviour {
         radioButton = GameObject.Find("RadioButton");
         imgChannels = new Sprite[nChannel];
         imgChannels = Resources.LoadAll<Sprite>("Sprites/Radio");
-        currentChannel = currentSong = 0;
-        radioSource.clip = radioChSong[currentChannel][currentSong];
-        radioSource.Play();
+        currentChannel = GlobalVars.RadioCh;
+        currentSong = GlobalVars.RadioSong;
+        if (currentChannel != 2) {
+            currentSong = (currentSong + 1) % 3;
+            radioSource.clip = radioChSong[currentChannel][currentSong];
+            radioSource.Play();
+        }
         radioButton.GetComponent<Image>().sprite = imgChannels[currentChannel];
         pressed = false;
     }
@@ -36,11 +40,13 @@ public class AudioRadio : MonoBehaviour {
             pressed = true;
             ++currentChannel;
             currentChannel %= 3; // 3 is the num of channels
+            GlobalVars.RadioCh = currentChannel;
             radioButton.GetComponent<Image>().sprite = imgChannels[currentChannel];
             if (currentChannel == 2)
                 radioSource.Stop();
             else {
                 currentSong = 0;
+                GlobalVars.RadioSong = currentSong;
                 radioSource.clip = radioChSong[currentChannel][currentSong];
                 radioSource.Play();
             }
@@ -48,6 +54,7 @@ public class AudioRadio : MonoBehaviour {
         else if (!radioSource.isPlaying && currentChannel != 2) {
             ++currentSong;
             currentSong %= 3; // 3 is the num of songs per channel
+            GlobalVars.RadioSong = currentSong;
             radioSource.clip = radioChSong[currentChannel][currentSong];
             radioSource.Play();
         }
