@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 struct movement{
     public Vector3 position;
@@ -37,6 +38,10 @@ public class CarController : MonoBehaviour {
     private float Turn;
     private float Brake;
 
+    float velocity;
+    bool reducedVel;
+    GameObject audioCrash;
+
     public void setUserControlled(){
         carStatus = 1;
         this.gameObject.SetActive(true);
@@ -47,6 +52,10 @@ public class CarController : MonoBehaviour {
     }
 
     void Start(){
+        velocity = 5.0f;
+        reducedVel = false;
+        audioCrash = GameObject.Find("AudioCrash");
+
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         /*if (carStatus < 1){
@@ -55,6 +64,7 @@ public class CarController : MonoBehaviour {
         else */if(carStatus < 2){
             userMovement.Clear();
         }
+        //this.gameObject.GetComponent<Rigidbody>().maxAngularVelocity = 1f;
     }
 
     private void Reset(){
@@ -62,6 +72,8 @@ public class CarController : MonoBehaviour {
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         userMovementCurrent = new Queue<movement>(userMovement);
+        velocity = 5.0f;
+        reducedVel = false;
     }
 
     void FixedUpdate(){
@@ -75,10 +87,22 @@ public class CarController : MonoBehaviour {
 
             currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000;
 
-            if (currentSpeed < topSpeed)
+            print(WheelBL.rpm);
+
+            print(this.gameObject.GetComponent<Rigidbody>().velocity);
+            Vector3 vel = this.gameObject.GetComponent<Rigidbody>().velocity;
+            if (vel.x < 0.0f && vel.x < -velocity) vel.x = -velocity;
+            if (vel.x > 0.0f && vel.x > velocity) vel.x = velocity;
+            if (vel.y < 0.0f && vel.y < -velocity) vel.y = -velocity;
+            if (vel.y > 0.0f && vel.y > velocity) vel.y = velocity;
+            if (vel.z < 0.0f && vel.z < -velocity) vel.z = -velocity;
+            if (vel.z > 0.0f && vel.z > velocity) vel.z = velocity;
+            this.gameObject.GetComponent<Rigidbody>().velocity = vel;
+
+            if (currentSpeed > -topSpeed)
             {
-                WheelBL.motorTorque = maxTorque * Forward;
-                WheelBR.motorTorque = maxTorque * Forward;
+                WheelBL.motorTorque = maxTorque * -1;
+                WheelBR.motorTorque = maxTorque * -1;
             }
 
             WheelBL.brakeTorque = maxBrakeTorque * Brake;
@@ -142,5 +166,20 @@ public class CarController : MonoBehaviour {
         Reset();
         //print("RESETED WITH POSITIONS");
         //print(originalPosition);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        string name = collision.gameObject.name;
+        name = name + "+++++";
+        string avoidName1 = name.Substring(0, 4);
+        string avoidName2 = name.Substring(0, 5);
+
+        if (avoidName1 != "Cube" && avoidName2 != "Plane") {
+            audioCrash.GetComponent<AudioSource>().Play();
+            if (!reducedVel) {
+                reducedVel = true;
+                velocity /= 2;
+            }
+        }
     }
 }
