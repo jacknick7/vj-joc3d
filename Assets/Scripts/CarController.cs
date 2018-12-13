@@ -124,29 +124,12 @@ public class CarController : MonoBehaviour {
     }
     void Update()
     {
-        Quaternion flq;//rotation of wheel collider
-        Vector3 flv;//position of wheel collider
-        WheelFL.GetWorldPose(out flv, out flq);//get wheel collider position and rotation
-        //FL.transform.position = flv;
-        //FL.transform.rotation = flq;
-
-        Quaternion Blq;//rotation of wheel collider
-        Vector3 Blv;//position of wheel collider
-        WheelBL.GetWorldPose(out Blv, out Blq);//get wheel collider position and rotation
-        //BL.transform.position = Blv;
-        //BL.transform.rotation = Blq;
-
-        Quaternion fRq;//rotation of wheel collider
-        Vector3 fRv;//position of wheel collider
-        WheelFR.GetWorldPose(out fRv, out fRq);//get wheel collider position and rotation
-        //FR.transform.position = fRv;
-        //FR.transform.rotation = fRq;
-
-        Quaternion BRq;//rotation of wheel collider
-        Vector3 BRv;//position of wheel collider
-        WheelBR.GetWorldPose(out BRv, out BRq);//get wheel collider position and rotation
-                                               //BR.transform.position = BRv;
-                                               //BR.transform.rotation = BRq;
+        Quaternion flq, Blq, fRq, BRq;
+        Vector3 flv, Blv, fRv, BRv;
+        WheelFL.GetWorldPose(out flv, out flq);
+        WheelBL.GetWorldPose(out Blv, out Blq);
+        WheelFR.GetWorldPose(out fRv, out fRq);
+        WheelBR.GetWorldPose(out BRv, out BRq);
 
         if ((Mathf.Abs(Vector3.Dot(transform.up, Vector3.down)) < 0.125f) && (carStatus == 1)){
             GameObject.Find("Level Logic").GetComponent<LevelLogic>().resetRoute();
