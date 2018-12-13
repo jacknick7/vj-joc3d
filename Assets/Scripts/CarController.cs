@@ -71,7 +71,6 @@ public class CarController : MonoBehaviour {
         currentSpeed = 0.0f;
         transform.position = originalPosition;
         transform.rotation = originalRotation;
-        userMovementCurrent = new Queue<movement>(userMovement);
         velocity = 5.0f;
         reducedVel = false;
     }
@@ -164,6 +163,12 @@ public class CarController : MonoBehaviour {
         carStatus = status;
         gameObject.SetActive(!(status == 0));
         Reset();
+        if(status == 1){
+            userMovementCurrent = new Queue<movement>();
+        }
+        else if (status == 2) {
+            userMovementCurrent = new Queue<movement>(userMovement);
+        }
         //print("RESETED WITH POSITIONS");
         //print(originalPosition);
     }

@@ -48,17 +48,17 @@ public class LightController : MonoBehaviour {
                         possible.Add(i);
                     }
                 }
-                if((Random.Range(0, 100) < 20) && (possible.Count>0)){
+                if((Random.Range(0, 100) < 50) && (possible.Count > 0)){
                     int pos = Random.Range(0, (possible.Count - 1));
                     transform.GetChild(1).gameObject.transform.GetChild(possible[pos]).gameObject.SetActive(true);
                     possible.RemoveAt(pos);
                     ++numActive;
-                    if ((Random.Range(0, 100) < 10) && (possible.Count > 0)){
+                    if ((Random.Range(0, 100) < 25) && (possible.Count > 0)){
                         pos = Random.Range(0, (possible.Count - 1));
                         transform.GetChild(1).gameObject.transform.GetChild(possible[pos]).gameObject.SetActive(true);
                         possible.RemoveAt(pos);
                         ++numActive;
-                        if ((Random.Range(0, 100) < 5) && (possible.Count > 0)){
+                        if ((Random.Range(0, 100) < 12.5) && (possible.Count > 0)){
                             pos = Random.Range(0, (possible.Count - 1));
                             transform.GetChild(1).gameObject.transform.GetChild(possible[pos]).gameObject.SetActive(true);
                             possible.RemoveAt(pos);
