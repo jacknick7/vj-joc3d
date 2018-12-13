@@ -31,12 +31,10 @@ public class CarController : MonoBehaviour {
     public float maxTorque = 65f;
     public float maxSteerAngle = 45f;
     public float currentSpeed = 0f;
-    public float maxBrakeTorque = 150f;
 
 
     private float Forward;
     private float Turn;
-    private float Brake;
 
     float velocity;
     bool reducedVel;
@@ -79,7 +77,6 @@ public class CarController : MonoBehaviour {
         if (carStatus == 1){
             Forward = -Input.GetAxis("Vertical");
             Turn = Input.GetAxis("Horizontal");
-            Brake = Input.GetAxis("Jump");
 
             WheelFL.steerAngle = maxSteerAngle * Turn;
             WheelFR.steerAngle = maxSteerAngle * Turn;
@@ -109,11 +106,6 @@ public class CarController : MonoBehaviour {
                 WheelBL.motorTorque = maxTorque * dir;
                 WheelBR.motorTorque = maxTorque * dir;
             }
-
-            WheelBL.brakeTorque = maxBrakeTorque * Brake;
-            WheelBR.brakeTorque = maxBrakeTorque * Brake;
-            WheelFL.brakeTorque = maxBrakeTorque * Brake;
-            WheelFR.brakeTorque = maxBrakeTorque * Brake;
 
             userMovement.Enqueue(new movement(transform.position, transform.rotation));
         }
