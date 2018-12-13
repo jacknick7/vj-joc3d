@@ -9,7 +9,7 @@ public class FogController : MonoBehaviour{
         fog = actFog;
         if (fog){
             transform.GetChild(0).gameObject.SetActive(fog);
-            transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Simulate(120.0f);
+            //transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Simulate(120.0f);
             transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
         }
     }
