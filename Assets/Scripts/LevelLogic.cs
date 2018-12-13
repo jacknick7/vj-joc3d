@@ -20,7 +20,7 @@ public class LevelLogic : MonoBehaviour {
     GameObject current_camera;
     GameObject characterUI;
     GameObject maplimits;
-    [SerializeField] int ntimes = 5;
+    int ntimes = 10;
     GameObject[] times;
     GameObject day, weatherRain, weatherFog;
     GameObject load;

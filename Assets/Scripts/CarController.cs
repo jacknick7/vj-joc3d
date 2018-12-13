@@ -88,7 +88,10 @@ public class CarController : MonoBehaviour {
 
             print(WheelBL.rpm);
 
-            print(this.gameObject.GetComponent<Rigidbody>().velocity);
+            // print(this.gameObject.GetComponent<Rigidbody>().velocity);
+
+            //if (Input.GetKey(KeyCode.Space)) velocity *= 2;
+
             Vector3 vel = this.gameObject.GetComponent<Rigidbody>().velocity;
             if (vel.x < 0.0f && vel.x < -velocity) vel.x = -velocity;
             if (vel.x > 0.0f && vel.x > velocity) vel.x = velocity;
@@ -98,10 +101,9 @@ public class CarController : MonoBehaviour {
             if (vel.z > 0.0f && vel.z > velocity) vel.z = velocity;
             this.gameObject.GetComponent<Rigidbody>().velocity = vel;
 
-            if (currentSpeed > -topSpeed)
-            {
-                WheelBL.motorTorque = maxTorque * -1;
-                WheelBR.motorTorque = maxTorque * -1;
+            if (currentSpeed > -topSpeed) {
+                WheelBL.motorTorque = maxTorque * -1.0f;
+                WheelBR.motorTorque = maxTorque * -1.0f;
             }
 
             WheelBL.brakeTorque = maxBrakeTorque * Brake;
@@ -147,6 +149,7 @@ public class CarController : MonoBehaviour {
         gameObject.SetActive(!(status == 0));
         Reset();
         if(status == 1){
+            userMovement.Clear();
             userMovementCurrent = new Queue<movement>();
         }
         else if (status == 2) {
@@ -157,16 +160,20 @@ public class CarController : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        string name = collision.gameObject.name;
-        name = name + "+++++";
-        string avoidName1 = name.Substring(0, 4);
-        string avoidName2 = name.Substring(0, 5);
+        if (carStatus == 1) {
+            string name = collision.gameObject.name;
+            name = name + "+++++";
+            string avoidName1 = name.Substring(0, 4);
+            string avoidName2 = name.Substring(0, 5);
 
-        if (avoidName1 != "Cube" && avoidName2 != "Plane") {
-            audioCrash.GetComponent<AudioSource>().Play();
-            if (!reducedVel) {
-                reducedVel = true;
-                velocity /= 2;
+            if (avoidName1 != "Cube" && avoidName2 != "Plane")
+            {
+                audioCrash.GetComponent<AudioSource>().Play();
+                if (!reducedVel)
+                {
+                    reducedVel = true;
+                    velocity /= 3;
+                }
             }
         }
     }
