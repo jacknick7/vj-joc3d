@@ -89,8 +89,10 @@ public class CarController : MonoBehaviour {
             print(WheelBL.rpm);
 
             // print(this.gameObject.GetComponent<Rigidbody>().velocity);
-
-            //if (Input.GetKey(KeyCode.Space)) velocity *= 2;
+            //if (Input.GetKey(KeyCode.T)) {
+            //    if (velocity == 10.0f) velocity = 5.0f;
+            //    else if (velocity == 5.0f) velocity = 10.0f;
+            //}
 
             Vector3 vel = this.gameObject.GetComponent<Rigidbody>().velocity;
             if (vel.x < 0.0f && vel.x < -velocity) vel.x = -velocity;
@@ -102,8 +104,10 @@ public class CarController : MonoBehaviour {
             this.gameObject.GetComponent<Rigidbody>().velocity = vel;
 
             if (currentSpeed > -topSpeed) {
-                WheelBL.motorTorque = maxTorque * -1.0f;
-                WheelBR.motorTorque = maxTorque * -1.0f;
+                float dir = -1.0f;
+                if (Input.GetKey(KeyCode.S)) dir = 1.0f;
+                WheelBL.motorTorque = maxTorque * dir;
+                WheelBR.motorTorque = maxTorque * dir;
             }
 
             WheelBL.brakeTorque = maxBrakeTorque * Brake;
