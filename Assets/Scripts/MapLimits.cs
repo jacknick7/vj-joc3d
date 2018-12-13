@@ -13,6 +13,7 @@ public class MapLimits : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == current_player_name) {
+            GameObject.Find("WrongWayCanvas").gameObject.GetComponent<WrongWayController>().activateWrongWay();
             logic.GetComponent<LevelLogic>().resetRoute();
         }
     }
