@@ -32,6 +32,7 @@ public class CarController : MonoBehaviour {
     public float maxSteerAngle = 45f;
     public float currentSpeed = 0f;
 
+    [SerializeField] GameObject smog;
 
     private float Forward;
     private float Turn;
@@ -50,6 +51,7 @@ public class CarController : MonoBehaviour {
     }
 
     void Start(){
+        smog.GetComponent<ParticleSystem>().Stop();
         velocity = 5.0f;
         reducedVel = false;
         audioCrash = GameObject.Find("AudioCrash");
@@ -66,6 +68,8 @@ public class CarController : MonoBehaviour {
     }
 
     private void Reset(){
+        smog.GetComponent<ParticleSystem>().Clear();
+        smog.GetComponent<ParticleSystem>().Stop();
         currentSpeed = 0.0f;
         transform.position = originalPosition;
         transform.rotation = originalRotation;
@@ -164,12 +168,25 @@ public class CarController : MonoBehaviour {
 
             if (avoidName1 != "Cube" && avoidName2 != "Plane")
             {
+                if (!smog.GetComponent<ParticleSystem>().IsAlive()) smog.GetComponent<ParticleSystem>().Play();
                 audioCrash.GetComponent<AudioSource>().Play();
                 if (!reducedVel)
                 {
                     reducedVel = true;
                     velocity /= 3;
                 }
+            }
+        }
+        else {
+            string name = collision.gameObject.name;
+            name = name + "+++++";
+            string avoidName1 = name.Substring(0, 4);
+            string avoidName2 = name.Substring(0, 5);
+
+            if (avoidName1 != "Cube" && avoidName2 != "Plane") {
+                if (!smog.GetComponent<ParticleSystem>().IsAlive()) smog.GetComponent<ParticleSystem>().Play();
+                audioCrash.GetComponent<AudioSource>().volume = 0.1f;
+                audioCrash.GetComponent<AudioSource>().Play();
             }
         }
     }
