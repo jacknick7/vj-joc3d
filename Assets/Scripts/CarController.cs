@@ -51,6 +51,7 @@ public class CarController : MonoBehaviour {
     }
 
     void Start(){
+        smog.GetComponent<ParticleSystem>().Simulate(0.0f);
         smog.GetComponent<ParticleSystem>().Stop();
         velocity = 5.0f;
         reducedVel = false;
@@ -68,7 +69,7 @@ public class CarController : MonoBehaviour {
     }
 
     private void Reset(){
-        smog.GetComponent<ParticleSystem>().Clear();
+        smog.GetComponent<ParticleSystem>().Simulate(0.0f);
         smog.GetComponent<ParticleSystem>().Stop();
         currentSpeed = 0.0f;
         transform.position = originalPosition;
@@ -142,6 +143,8 @@ public class CarController : MonoBehaviour {
     public void setCarStatus(int status) {
         carStatus = status;
         gameObject.SetActive(!(status == 0));
+        smog.GetComponent<ParticleSystem>().Simulate(0.0f);
+        smog.GetComponent<ParticleSystem>().Stop();
     }
 
     public void setCarStatusAndReset(int status) {
