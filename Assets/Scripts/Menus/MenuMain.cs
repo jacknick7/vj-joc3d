@@ -9,7 +9,7 @@ public class MenuMain : MonoBehaviour {
 
 	public void StartLevelOne() {
         GlobalVars.Level = 1;
-        GlobalVars.Time = 6;
+        GlobalVars.Time = 600.0f;
         GlobalVars.RadioCh = Random.Range(0, 1);
         GlobalVars.RadioSong = Random.Range(0, 2);
         SceneManager.LoadScene(LevelOne);
