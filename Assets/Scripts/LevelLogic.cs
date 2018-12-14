@@ -83,6 +83,7 @@ public class LevelLogic : MonoBehaviour {
             pressed = true;
         }
         if (pressed && Input.GetKeyUp(KeyCode.R)) pressed = false;
+        if (Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene(scene_menu);
     }
 
     public void incTime(float extra_time) {

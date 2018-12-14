@@ -182,14 +182,13 @@ public class CarController : MonoBehaviour {
         }
         else {
             string name = collision.gameObject.name;
-            name = name + "+++++";
+            name = name + "++++++++++";
             string avoidName1 = name.Substring(0, 4);
             string avoidName2 = name.Substring(0, 5);
+            string avoidName3 = name.Substring(0, 10);
 
-            if (avoidName1 != "Cube" && avoidName2 != "Plane") {
+            if (avoidName1 != "Cube" && avoidName2 != "Plane" && avoidName3 != "MainPlayer") {
                 if (!smog.GetComponent<ParticleSystem>().IsAlive()) smog.GetComponent<ParticleSystem>().Play();
-                audioCrash.GetComponent<AudioSource>().volume = 0.1f;
-                audioCrash.GetComponent<AudioSource>().Play();
             }
         }
     }

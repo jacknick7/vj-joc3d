@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GodModeController : MonoBehaviour {
 
-    [SerializeField] bool active = true;
+    bool active = false;
 
     void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha0)) active = !active; 
         if (active) {
             if (Input.GetKeyDown(KeyCode.I)) {
                 //Lights
