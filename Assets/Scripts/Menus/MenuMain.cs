@@ -19,13 +19,13 @@ public class MenuMain : MonoBehaviour {
         Application.Quit();
     }
 
-    public void SwitchOptions() {
-        GameObject.Find("MenuMain").SetActive(false);
-        transform.parent.Find("MenuOptions").gameObject.SetActive(true);
-    }
-
     public void SwitchInstructions() {
         GameObject.Find("MenuMain").SetActive(false);
         transform.parent.Find("MenuInstructions").gameObject.SetActive(true);
+    }
+
+    public void SwitchCredits() {
+        GameObject.Find("MenuMain").SetActive(false);
+        transform.parent.Find("MenuCredits").gameObject.SetActive(true);
     }
 }
