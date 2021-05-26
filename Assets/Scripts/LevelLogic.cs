@@ -72,7 +72,7 @@ public class LevelLogic : MonoBehaviour {
         roundConditions();
         //time = 60.0f;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         time -= Time.deltaTime;
@@ -87,7 +87,7 @@ public class LevelLogic : MonoBehaviour {
     }
 
     public void incTime(float extra_time) {
-        Debug.Log(extra_time);
+        //Debug.Log(extra_time);
         time += extra_time;
         old_time += extra_time;
     }
@@ -137,7 +137,7 @@ public class LevelLogic : MonoBehaviour {
         // aixo es una cutrada PUTO UNITY DE MERDA
         vehicles[actual_route].GetComponent<CarController>().setCarStatusAndReset(0);
         vehicles[actual_route].GetComponent<CarController>().setCarStatusAndReset(1);
-        old_time -= 1.0f; 
+        old_time -= 1.0f;
         time = old_time;
     }
 

@@ -88,7 +88,7 @@ public class CarController : MonoBehaviour {
 
             currentSpeed = 2 * 22 / 7 * WheelBL.radius * WheelBL.rpm * 60 / 1000;
 
-            print(WheelBL.rpm);
+            //print(WheelBL.rpm);
 
             // print(this.gameObject.GetComponent<Rigidbody>().velocity);
             //if (Input.GetKey(KeyCode.T)) {
